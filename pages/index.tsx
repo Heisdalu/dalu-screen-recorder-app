@@ -1,54 +1,19 @@
 import Image from "next/image";
-import { Inter, Sora, Work_Sans } from "next/font/google";
 import Wrapper from "@/components/Wrapper/Wrapper";
 import DefaultImage from "@/components/Default/DefaultImage";
 import Works from "@/components/Works/Works";
-
-const inter = Inter({
-  subsets: ["latin"],
-  display: "swap",
-  adjustFontFallback: false,
-});
-const sora = Sora({
-  subsets: ["latin"],
-  display: "swap",
-  adjustFontFallback: false,
-});
-const work_sans = Work_Sans({
-  subsets: ["latin"],
-  display: "swap",
-  adjustFontFallback: false,
-});
-
-// <div className={``}></div>;
-// const gee = {`${sora.className}`}
-// const gee = {`${work_sans.className}`}
+import NavBar from "@/components/NavBar/NavBar";
+import Footer from "@/components/Footer/Footer";
+import { inter, work_sans, sora } from "@/font/font";
 
 export default function Home() {
   return (
     <div className={inter.className}>
       <Wrapper>
-        <nav className="flex justify-between">
-          <div className="space-x-0.5 flex elemVertical">
-            <DefaultImage src="/logo.svg" height={40} width={40} />
-            <span className="text-[1rem] font-[700] text-[#100A42]">
-              HelpMeOut
-            </span>
-          </div>
-
-          <div
-            className={`hidden md:flex ${work_sans.className} elemVertical space-x-[2.4375rem] text-[1rem] font-[500] text-black`}
-          >
-            <h1>Feature</h1>
-            <h1>How it works</h1>
-          </div>
-
-          <button
-            className={`${sora.className} font-[600] text-[1rem] md:text-[1.125rem] text-darkBlue`}
-          >
-            Get Started
-          </button>
-        </nav>
+        <NavBar
+          workSans={`${work_sans.className}`}
+          sora={`${sora.className}`}
+        />
         <header className="py-[2rem] space-y-[1.5rem] md:space-y-[2.5rem] lg:space-y-[0] md:py-[3.5rem] md:grid lg:[grid-template-columns:1fr_1fr] lg:items-center lg:[grid-gap:2rem] vlg:py-[5rem]">
           <div className="max-w-[500px] md:max-w-[auto]">
             <h1
@@ -227,63 +192,7 @@ export default function Home() {
         </Wrapper>
       </section>
 
-      <section className="bg-[#120B48] mt-2 md:mt-[3rem] lg:mt-[4rem]">
-        <Wrapper>
-          <div className="text-white py-2 md:py-[3rem] lg:py-[4rem] space-y-1 md:grid md:[grid-template-columns:0.5fr_1.5fr] md:space-y-[0] md:max-w-[1200px]">
-            <div className="elemVertical space-x-[5px] md:self-start">
-              <span>
-                <DefaultImage width={32} height={32} src="/whiteLogo.svg" />
-              </span>
-              <span className="text-[1rem] font-[700]">HelpMeOut</span>
-            </div>
-
-            <div className="space-y-[2.5rem] md:flex md:space-y-[0] md:justify-around">
-              <div className="space-y-1">
-                <h1 className={`${sora.className} text-1 font-[600]`}>Home</h1>
-                <p className={`${work_sans.className} text-[1rem] font-[400`}>
-                  Home
-                </p>
-                <p className={`${work_sans.className} text-[1rem] font-[400`}>
-                  Converter
-                </p>
-                <p className={`${work_sans.className} text-[1rem] font-[400`}>
-                  How it Works
-                </p>
-              </div>
-
-              <div className="space-y-1">
-                <h1 className={`${sora.className} text-1 font-[600]`}>
-                  About us
-                </h1>
-                <p className={`${work_sans.className} text-[1rem] font-[400`}>
-                  About
-                </p>
-                <p className={`${work_sans.className} text-[1rem] font-[400`}>
-                  Contact Us
-                </p>
-                <p className={`${work_sans.className} text-[1rem] font-[400`}>
-                  Privacy Policy
-                </p>
-              </div>
-
-              <div className="space-y-1">
-                <h1 className={`${sora.className} text-1 font-[600]`}>
-                  Screen Record
-                </h1>
-                <p className={`${work_sans.className} text-[1rem] font-[400`}>
-                  Browser Window
-                </p>
-                <p className={`${work_sans.className} text-[1rem] font-[400`}>
-                  Desktop
-                </p>
-                <p className={`${work_sans.className} text-[1rem] font-[400`}>
-                  Application
-                </p>
-              </div>
-            </div>
-          </div>
-        </Wrapper>
-      </section>
+      <Footer workSans={work_sans.className} sora={sora.className} />
     </div>
   );
 }

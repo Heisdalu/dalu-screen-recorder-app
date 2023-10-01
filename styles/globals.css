@@ -11,6 +11,11 @@
     @apply h-[40px] w-[40px] flex justify-center items-center rounded-[50%]
   }
 
+  .ccp {
+    color: #b6b3c633;
+    color: #434343cc;
+  }
+
   /* .gallery {
     display: grid;
     grid-template-columns: 1fr 1fr;
