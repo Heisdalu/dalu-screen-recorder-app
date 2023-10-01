@@ -84,18 +84,18 @@ const VideoDetail = () => {
                   </button>
                   <button className="rounded-[0.375rem] flex border-[1px] border-[#0A0628] px-1 py-[0.75rem] space-x-0.5 items-center">
                     <span>
-                      <DefaultImage src="/fb.svg" height={24} width={24} />
+                      <DefaultImage src="/whatapp.svg" height={24} width={24} />
                     </span>
                     <span className="text-[#08051E] font-[500] text-[1rem]">
-                      Facebook
+                      Whatapps
                     </span>
                   </button>
                   <button className="rounded-[0.375rem] flex border-[1px] border-[#0A0628] px-1 py-[0.75rem] space-x-0.5 items-center">
                     <span>
-                      <DefaultImage src="/fb.svg" height={24} width={24} />
+                      <DefaultImage src="/telegram.svg" height={24} width={24} />
                     </span>
                     <span className="text-[#08051E] font-[500] text-[1rem]">
-                      Facebook
+                      Telagram
                     </span>
                   </button>
                 </div>
