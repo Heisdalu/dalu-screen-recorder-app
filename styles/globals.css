@@ -7,7 +7,11 @@
     @apply flex items-center;
   }
 
-  .gallery {
+  .iconFix {
+    @apply h-[40px] w-[40px] flex justify-center items-center rounded-[50%]
+  }
+
+  /* .gallery {
     display: grid;
     grid-template-columns: 1fr 1fr;
     align-items: center;
@@ -18,5 +22,5 @@
   .imageGallery {
     display: flex;
     flex-direction: row;
-  }
+  } */
 }
