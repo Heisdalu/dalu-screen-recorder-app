@@ -1,5 +1,6 @@
 import { FC } from "react";
 import DefaultImage from "../Default/DefaultImage";
+import Link from "next/link";
 
 interface Props {
   workSans: string;
@@ -9,10 +10,10 @@ interface Props {
 const NavBar: FC<Props> = ({ workSans, sora }) => {
   return (
     <nav className="flex justify-between">
-      <div className="space-x-0.5 flex elemVertical">
+      <Link href="/" className="space-x-0.5 flex elemVertical">
         <DefaultImage src="/logo.svg" height={40} width={40} />
         <span className="text-[1rem] font-[700] text-[#100A42]">HelpMeOut</span>
-      </div>
+      </Link>
 
       <div
         className={`hidden md:flex ${workSans} elemVertical space-x-[2.4375rem] text-[1rem] font-[500] text-black`}
