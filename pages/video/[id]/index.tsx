@@ -3,11 +3,72 @@ import Footer from "@/components/Footer/Footer";
 import NavBar from "@/components/NavBar/NavBar";
 import Wrapper from "@/components/Wrapper/Wrapper";
 import { inter, sora, work_sans } from "@/font/font";
+import { useRouter } from "next/router";
+import axios from "axios";
+import { useEffect, useState, FC } from "react";
+import Link from "next/link";
 
-// `${sora.className}`
-// `${work_sans.className}`
+interface Props {
+  id: string;
+  videoPath: string;
+}
 
-const VideoDetail = () => {
+const VideoDetail: FC = () => {
+  const [loading, setLoading] = useState(true);
+  const [data, setData] = useState<Props>({ id: "", videoPath: "" });
+  const [error, setError] = useState(false);
+  const { query } = useRouter();
+
+
+  useEffect(() => {
+    const getVideoDetails = async () => {
+      if (query.id) {
+        try {
+          const res = await axios(
+            `https://seashell-app-4jicj.ondigitalocean.app/api/video/get/${query.id}`
+          );
+          setData({ ...res.data.data });
+          setError(false);
+        } catch (e: any) {
+          console.log(e.message);
+          setError(true);
+        } finally {
+          setLoading(false);
+        }
+      }
+    };
+
+    getVideoDetails();
+  }, [query.id]);
+
+  console.log(loading, data, error);
+
+  if (loading) {
+    return (
+      <div className="h-[500px] animate-pulse mx-auto grid place-items-center">
+        Loading...Please wait
+      </div>
+    );
+  }
+
+  if (error && !loading) {
+    return (
+      <div className="h-[500px] mx-auto grid place-items-center">
+        <div className="flex flex-col justify-center space-y-2">
+          <p className="font-[1.5rem] md:text-[2.5rem]">
+            No video available with that specified id
+          </p>
+          <Link
+            href="/"
+            className="text-[1rem] text-[#9D9D9D] px-2 py-0.5 border-1 border-[#CFCFCF] mx-auto text-center rounded-[0.25rem]"
+          >
+            Go back Home
+          </Link>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className={inter.className}>
       <Wrapper>
@@ -31,7 +92,7 @@ const VideoDetail = () => {
                   <span
                     className={`${sora.className} font-[600] text-[#413C6D] text-[1.1rem] md:text-[1.5rem]`}
                   >
-                    Untitled_Video_20232509{" "}
+                    Untitled_Video_{data.id}
                   </span>
                   <span>
                     <DefaultImage src="/edit.svg" width={32} height={32} />
@@ -56,9 +117,9 @@ const VideoDetail = () => {
                 </h1>
                 <div className="flex items-center p-[0.75rem] space-x-1 bg-[#FAFAFA] border-[0.5px] border-[#929292] rounded-[1rem]">
                   <div
-                    className={`w-[70%] ${work_sans.className} overflow-hidden [text-overflow:ellipsis] md:overflow-auto md:w-auto`}
+                    className={`w-[100%] border-1 ${work_sans.className} overflow-hidden [text-overflow:ellipsis] md:overflow-auto md:w-auto`}
                   >
-                    https://www.helpmeout/Untitled_Video_20232509
+                    {`https://dalu-screen-recorder-app.vercel.app/video/${data.id}`}
                   </div>
                   <button className="flex items-center border-1 border-[#120B48] p-[0.3rem] md:py-[0.625rem] md:px-[1.125rem] rounded-[0.5rem] space-x-0.5">
                     <span>
@@ -92,7 +153,11 @@ const VideoDetail = () => {
                   </button>
                   <button className="rounded-[0.375rem] flex border-[1px] border-[#0A0628] px-1 py-[0.75rem] space-x-0.5 items-center">
                     <span>
-                      <DefaultImage src="/telegram.svg" height={24} width={24} />
+                      <DefaultImage
+                        src="/telegram.svg"
+                        height={24}
+                        width={24}
+                      />
                     </span>
                     <span className="text-[#08051E] font-[500] text-[1rem]">
                       Telagram
@@ -105,7 +170,7 @@ const VideoDetail = () => {
 
           <div className="py-1 ">
             <video
-              src=""
+              src={data.videoPath}
               controls
               height={400}
               width={400}
@@ -123,15 +188,7 @@ const VideoDetail = () => {
                 English
               </div>
 
-              <div className="text-[1rem]">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut ab
-                distinctio praesentium eaque dicta harum laboriosam sed. At
-                debitis voluptatem, corrupti officia neque deserunt consectetur
-                deleniti omnis veniam. Quibusdam, repellat. Lorem ipsum dolor
-                sit amet consectetur adipisicing elit. Cumque obcaecati sint
-                aperiam architecto ipsum, molestias provident officia quasi
-                assumenda natus.
-              </div>
+              <div className="text-[1rem]">No Transcript provided.</div>
             </div>
           </div>
         </div>
