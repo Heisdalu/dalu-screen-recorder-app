@@ -117,7 +117,7 @@ const VideoDetail: FC = () => {
                 </h1>
                 <div className="flex items-center p-[0.75rem] space-x-1 bg-[#FAFAFA] border-[0.5px] border-[#929292] rounded-[1rem]">
                   <div
-                    className={`w-[100%] border-1 ${work_sans.className} overflow-hidden [text-overflow:ellipsis] md:overflow-auto md:w-auto`}
+                    className={`w-[100%] ${work_sans.className} overflow-hidden [text-overflow:ellipsis] md:overflow-auto md:w-auto`}
                   >
                     {`https://dalu-screen-recorder-app.vercel.app/video/${data.id}`}
                   </div>
